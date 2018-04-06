@@ -1,0 +1,5 @@
+Zenith Minimal Interpreter
+
+This program is able to interpret the minimal portion of the Zenith language,
+which allows it to be used to build the Zenith compiler on a system that does
+not already contain a built version of the Zenith compiler.

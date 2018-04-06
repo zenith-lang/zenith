@@ -1,0 +1,17 @@
+#!/usr/bin/env zenith
+
+msg "Hello, world!
+"
+len #msg;
+
+$ main {
+    # Write message
+    push len;
+    push msg;
+    push 1;
+    push 4;
+    syscall;
+    # Exit program
+    push 1;
+    syscall;
+}
