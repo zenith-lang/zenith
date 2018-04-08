@@ -1,5 +1,5 @@
-#ifndef ZENITH_MAIN_H
-#define ZENITH_MAIN_H
+#ifndef ZENITH_ENTRY_H
+#define ZENITH_ENTRY_H
 
 #define RUN_TYPE_PARSE_FAILURE -2
 #define RUN_TYPE_UNKNOWN -1
@@ -14,4 +14,12 @@ typedef struct {
 
 extern options_t options;
 
+int bootstrap_main(int argc, const char **argv);
+
+#ifdef ZENITH_ENTRY_C
+
+void print_version();
+void print_usage(const char *argv0);
+
+#endif
 #endif

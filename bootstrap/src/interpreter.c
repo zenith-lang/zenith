@@ -1,3 +1,4 @@
+#define ZENITH_INTERPRETER_C
 #include <errno.h>
 #include <stdlib.h>
 #include <interpreter.h>
@@ -5,9 +6,6 @@
 #include <reader.h>
 #include <stack.h>
 #include <syscall.h>
-
-int execute_method(program_t *program, stack_t *stack, method_t *method);
-int execute_instruction(program_t *program, stack_t *stack, instruction_t *instruction);
 
 int interpret_loop(program_t *program) {
     if (!program->main_method) {

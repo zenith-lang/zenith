@@ -3,4 +3,6 @@
 /build/
 /build-aux/
 /configure
+/m4/
 *.in
+*~
