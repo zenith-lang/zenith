@@ -1,0 +1,56 @@
+#!/usr/bin/env zenith
+
+msg_0 "Hello!  What is your name?
+> "
+len_0 #msg_0;
+msg_1 "Nice to meet you, "
+len_1 #msg1;
+msg_2 "!  My name is Zenith.
+"
+len_2 #msg2
+# Maximum length of a name is 100 characters
+name "                                                                                                    "
+name_max #name
+void 0
+read_count 0
+
+$ main {
+        # Write prompt
+    push len_0;
+    push msg_1;
+    push 1;
+    push 4;
+    syscall;
+    pop void;
+        # Read name
+    push name_max;
+    push name;
+    push 0;
+    push 3;
+    syscall;
+    pop read_count;
+        # Print greeting
+    push len_1;
+    push msg_1;
+    push 1;
+    push 4;
+    syscall;
+    pop void;
+        #
+    push read_count;
+    push name;
+    push 1;
+    push 4;
+    syscall;
+    pop void;
+        #
+    push len_2;
+    push msg_2;
+    push 1;
+    push 4;
+    syscall;
+    pop void;
+        # Exit program
+    push 1;
+    syscall;
+}
