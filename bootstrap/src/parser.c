@@ -39,6 +39,7 @@ int parse_program(program_t *program) {
                 break;
             case SYMBOL_TYPE_METHOD_START:
                 ++program->methods_count;
+                ++program->variables_count;
                 break;
             case SYMBOL_TYPE_INSTRUCTION:
                 ++instruction_count;
@@ -143,6 +144,10 @@ int parse_program(program_t *program) {
                 if (strcmp(methods->name, "main") == 0) {
                     program->main_method = methods;
                 }
+                variables->name = methods->name;
+                variables->data = methods;
+                variables->data_length = sizeof(method_t);
+                ++variables;
                 break;
             case SYMBOL_TYPE_METHOD_END:
                 ++methods;

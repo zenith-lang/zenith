@@ -51,6 +51,11 @@ int execute_instruction(program_t *program, stack_t *stack, instruction_t *instr
                 return ~errno;
             }
             break;
+        case INSTRUCTION_TYPE_CALL:
+            if (execute_method(program, stack, (method_t *) instruction->operands->value.variable->data) < 0) {
+                return ~errno;
+            }
+            break;
         default:
             return ~(errno = EINVAL);
     }

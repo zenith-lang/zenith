@@ -7,7 +7,5 @@ TESTS = \
     test/hello-world/hello-world \
     test/greeter/greeter \
     test/functions/functions
-XFAIL_TESTS = \
-    test/functions/functions
 EXTRA_DIST = test/
 ACLOCAL_AMFLAGS = -I m4

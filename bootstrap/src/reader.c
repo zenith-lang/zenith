@@ -129,6 +129,9 @@ int read_symbol(symbol_t *symbol, void *data, size_t data_length) {
                     } else if (strcmp(opcode, "ignore") == 0) {
                         symbol->data.instruction.arguments_length = 0;
                         symbol->data.instruction.opcode = INSTRUCTION_TYPE_IGNORE;
+                    } else if (strcmp(opcode, "call") == 0) {
+                        symbol->data.instruction.arguments_length = 1;
+                        symbol->data.instruction.opcode = INSTRUCTION_TYPE_CALL;
                     } else {
                         fseek(read_file, start_pos, SEEK_SET);
                         return ~(errno = EIO);

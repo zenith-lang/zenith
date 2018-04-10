@@ -12,13 +12,13 @@ middle_beg_len #middle_beg;
 middle_end "End of middle()
 "
 middle_end_len #middle_end;
-inner "Inside of inner()
+inner_msg "Inside of inner()
 "
-inner_len #inner;
+inner_msg_len #inner_msg;
 
 $ inner {
-    push inner_len;
-    push inner;
+    push inner_msg_len;
+    push inner_msg;
     push 1;
     push 4;
     syscall;
