@@ -6,7 +6,5 @@ LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) $(top_srcdir)/build-aux/tap-driver
 TESTS = \
     test/hello-world/hello-world \
     test/greeter/greeter
-XFAIL_TESTS = \
-    test/greeter/greeter
 EXTRA_DIST = test/
 ACLOCAL_AMFLAGS = -I m4

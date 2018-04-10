@@ -30,6 +30,9 @@ int execute_method(program_t *program, stack_t *stack, method_t *method) {
 }
 
 int execute_instruction(program_t *program, stack_t *stack, instruction_t *instruction) {
+    operand_t operand = {
+        .is_constant = 1,
+    };
     switch (instruction->opcode) {
         case INSTRUCTION_TYPE_PUSH:
             if (push(stack, instruction->operands) < 0) {
@@ -37,7 +40,14 @@ int execute_instruction(program_t *program, stack_t *stack, instruction_t *instr
             }
             break;
         case INSTRUCTION_TYPE_SYSCALL:
-            if (do_syscall(stack) < 0) {
+            operand.value.constant = do_syscall(stack);
+            push(stack, &operand);
+            if (operand.value.constant < 0) {
+                return ~errno;
+            }
+            break;
+        case INSTRUCTION_TYPE_IGNORE:
+            if (pop(stack, NULL) < 0) {
                 return ~errno;
             }
             break;

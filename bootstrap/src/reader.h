@@ -14,6 +14,7 @@
 
 #define INSTRUCTION_TYPE_PUSH 0
 #define INSTRUCTION_TYPE_SYSCALL 1
+#define INSTRUCTION_TYPE_IGNORE 2
 
 typedef struct {
     int type;

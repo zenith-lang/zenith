@@ -4,13 +4,14 @@
 #include <reader.h>
 
 FILE *read_file = NULL;
-int is_in_method = 0;
+int is_in_method;
 
 int read_init(const char *filename) {
     if (read_file != NULL) {
         return ~(errno = EALREADY);
     }
     read_file = fopen(filename, "r");
+    is_in_method = 0;
     return read_file ? 0 : ~errno;
 }
 
@@ -125,6 +126,9 @@ int read_symbol(symbol_t *symbol, void *data, size_t data_length) {
                     } else if (strcmp(opcode, "syscall") == 0) {
                         symbol->data.instruction.arguments_length = 0;
                         symbol->data.instruction.opcode = INSTRUCTION_TYPE_SYSCALL;
+                    } else if (strcmp(opcode, "ignore") == 0) {
+                        symbol->data.instruction.arguments_length = 0;
+                        symbol->data.instruction.opcode = INSTRUCTION_TYPE_IGNORE;
                     } else {
                         fseek(read_file, start_pos, SEEK_SET);
                         return ~(errno = EIO);
@@ -292,6 +296,7 @@ int read_symbol(symbol_t *symbol, void *data, size_t data_length) {
 
 int read_close() {
     if (fclose(read_file) == 0) {
+        read_file = NULL;
         return 0;
     } else {
         return ~(errno = EIO);

@@ -14,7 +14,11 @@ int pop(stack_t *stack, operand_t *operand) {
     if (stack->ptr <= 0) {
         return ~(errno = ENOBUFS);
     }
-    *operand = stack->values[--stack->ptr];
+    if (operand) {
+        *operand = stack->values[--stack->ptr];
+    } else {
+        --stack->ptr;
+    }
     return 0;
 }
 

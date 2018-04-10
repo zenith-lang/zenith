@@ -9,23 +9,17 @@ int main(int argc, const char **argv) {
     const char *args[2];
     args[0] = "zenith-bootstrap";
     args[1] = SRC_DIR "/test/greeter/greeter.zen";
-    set_stdin("Zach");
-    bootstrap_main(2, args);
-    if (is_stdin_empty()
-     && check_stream(stdout, "Hello!  What is your name?\n> Nice to meet you, Zach!  My name is Zenith.\n")
-     && check_stream(stderr, "")) {
-        tap_ok(NULL);
-    } else {
-        tap_not_ok(NULL);
+#define TEST_CASE(name) \
+    set_stdin(name); \
+    bootstrap_main(2, args); \
+    if (is_stdin_empty() \
+     && check_stream(stdout, "Hello!  What is your name?\n> \nNice to meet you, " name "!  My name is Zenith.\n") \
+     && check_stream(stderr, "")) { \
+        tap_ok(NULL); \
+    } else { \
+        tap_not_ok(NULL); \
     }
-    set_stdin("Einstein");
-    bootstrap_main(2, args);
-    if (is_stdin_empty()
-     && check_stream(stdout, "Hello!  What is your name?\n> Nice to meet you, Einstein!  My name is Zenith.\n")
-     && check_stream(stderr, "")) {
-        tap_ok(NULL);
-    } else {
-        tap_not_ok(NULL);
-    }
+    TEST_CASE("Zach");
+    TEST_CASE("Not Zach");
     return 0;
 }

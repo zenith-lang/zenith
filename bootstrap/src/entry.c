@@ -8,11 +8,10 @@
 #include <parser.h>
 #include <reader.h>
 
-options_t options = {
-    .run_type = RUN_TYPE_UNKNOWN
-};
+options_t options;
 
 int bootstrap_main(int argc, const char **argv) {
+    options.run_type = RUN_TYPE_UNKNOWN;
     for (const char **it = argv + 1, **end = argv + argc; it != end; ++it) {
         const char *arg = *it;
         if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {

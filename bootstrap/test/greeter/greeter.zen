@@ -3,14 +3,15 @@
 msg_0 "Hello!  What is your name?
 > "
 len_0 #msg_0;
-msg_1 "Nice to meet you, "
-len_1 #msg1;
+msg_1 "
+Nice to meet you, "
+len_1 #msg_1;
 msg_2 "!  My name is Zenith.
 "
-len_2 #msg2
+len_2 #msg_2;
 # Maximum length of a name is 100 characters
 name "                                                                                                    "
-name_max #name
+name_max #name;
 
 $ main {
         # Write prompt
