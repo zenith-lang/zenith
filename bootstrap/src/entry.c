@@ -4,9 +4,6 @@
 #include <string.h>
 #include <config.h>
 #include <entry.h>
-#include <interpreter.h>
-#include <parser.h>
-#include <reader.h>
 
 options_t options;
 
@@ -43,33 +40,10 @@ int bootstrap_main(int argc, const char **argv) {
     } else if (options.run_type == RUN_TYPE_VERSION) {
         print_version();
     } else {
-        if (read_init(options.filename) < 0) {
-            fprintf(stderr, "Unable to open file: %s\n", strerror(errno));
-            return errno;
-        } else {
-            program_t program;
-            if (parse_program(&program) < 0) {
-                fprintf(stderr, "Unable to parse program: %s\b", strerror(errno));
-                if (read_close() < 0) {
-                    fprintf(stderr, "Unable to close file: %s\n", strerror(errno));
-                    return errno;
-                }
-            } else if (interpret_loop(&program) < 0) {
-                fprintf(stderr, "Unable to interpret file: %s\n", strerror(errno));
-                if (free_program(&program) < 0) {
-                    fprintf(stderr, "Unable to free program: %s\n", strerror(errno));
-                }
-                if (read_close() < 0) {
-                    fprintf(stderr, "Unable to close file: %s\n", strerror(errno));
-                }
-                return errno;
-            } else if (read_close() < 0) {
-                fprintf(stderr, "Unable to close file: %s\n", strerror(errno));
-                if (free_program(&program) < 0) {
-                    fprintf(stderr, "Unable to free program: %s\n", strerror(errno));
-                }
-                return errno;
-            }
+        int err = do_interpret(options.filename);
+        if (err < 0) {
+            fprintf(stderr, "Unable to interpret file: %s\n", strerror(errno));
+            return err;
         }
     }
     return options.run_type < 0 ? 1 : 0;
@@ -89,4 +63,8 @@ void print_usage(const char *argv0) {
     fputs("    -v, --version  Display the version information and exit\n", stream);
     fputs("\n", stream);
     print_version();
+}
+
+int do_interpret(const char *filename) {
+    return ~(errno = ENOSYS);
 }

@@ -13,9 +13,6 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
     Makefile
     src/Makefile
-    test/arithmetic/Makefile
-    test/functions/Makefile
-    test/greeter/Makefile
     test/hello-world/Makefile
     test/lib/Makefile
     test/Makefile

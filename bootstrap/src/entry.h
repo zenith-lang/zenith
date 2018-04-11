@@ -20,6 +20,7 @@ int bootstrap_main(int argc, const char **argv);
 
 void print_version();
 void print_usage(const char *argv0);
+int do_interpret(const char *filename);
 
 #endif
 #endif
