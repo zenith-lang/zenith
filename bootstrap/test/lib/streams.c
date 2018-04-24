@@ -121,7 +121,11 @@ void cleanup_streams_sig(int sig) {
 }
 
 FILE *get_tap_log() {
-    return tap_log;
+    if (tap_log) {
+        return tap_log;
+    } else {
+        return stdout;
+    }
 }
 
 void set_stdin(const char *data) {

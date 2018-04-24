@@ -1,9 +1,9 @@
 AM_CPPFLAGS = -I"$(srcdir)/../lib" -I "$(srcdir)/../../src"
-check_PROGRAMS = hello-world
-hello_world_LDFLAGS = -static
-hello_world_SOURCES = \
+check_PROGRAMS = unit-read-line
+unit_read_line_LDFLAGS = -static
+unit_read_line_SOURCES = \
     main.c
-hello_world_LDADD = \
+unit_read_line_LDADD = \
     ../../src/libzenith-bootstrap.la \
     ../lib/libzenith-bootstrap-tests.la
 

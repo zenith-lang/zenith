@@ -15,6 +15,10 @@ AC_CONFIG_FILES([
     src/Makefile
     test/hello-world/Makefile
     test/lib/Makefile
+    test/unit-lex/Makefile
+    test/unit-lex-between/Makefile
+    test/unit-lex-line/Makefile
+    test/unit-read-line/Makefile
     test/Makefile
 ])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
