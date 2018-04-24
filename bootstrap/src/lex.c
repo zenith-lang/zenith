@@ -57,7 +57,7 @@ int lex_next_token(lex_context_t *context, lex_token_t *token) {
     return 0;
 }
 
-int lex_get_line(lex_token_t *token, char *line, int size) {
+int lex_get_line(lex_token_t *token, char *line, size_t size) {
     int len = token->line_end - token->line_start;
     if (size < len) {
         return ~(errno = ENOBUFS);
@@ -73,7 +73,7 @@ int lex_get_line(lex_token_t *token, char *line, int size) {
     return 0;
 }
 
-int lex_read_between(lex_token_t *start, lex_token_t *end, char *buf, int size) {
+int lex_read_between(lex_token_t *start, lex_token_t *end, char *buf, size_t size) {
     int len = end->token_start + end->line_start - start->token_end - start->line_start + 1;
     if (len < 0 || start->context != end->context) {
         return ~(errno = EINVAL);

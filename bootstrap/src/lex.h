@@ -6,25 +6,25 @@
 
 typedef struct {
     FILE *file;
-    int line_start;
-    int line_end;
-    int token_start;
+    size_t line_start;
+    size_t line_end;
+    size_t token_start;
     char *line;
 } lex_context_t;
 
 typedef struct {
     lex_context_t *context;
-    int line_start;
-    int line_end;
-    int token_start;
-    int token_end;
+    size_t line_start;
+    size_t line_end;
+    size_t token_start;
+    size_t token_end;
     char value[MAX_TOKEN_LENGTH];
 } lex_token_t;
 
 int lex_open(const char *filename, lex_context_t *context);
 int lex_next_token(lex_context_t *context, lex_token_t *token);
-int lex_get_line(lex_token_t *token, char *line, int size);
-int lex_read_between(lex_token_t *start, lex_token_t *end, char *buf, int size);
+int lex_get_line(lex_token_t *token, char *line, size_t size);
+int lex_read_between(lex_token_t *start, lex_token_t *end, char *buf, size_t size);
 int lex_close(lex_context_t *context);
 
 #ifdef ZENITH_LEX_C
