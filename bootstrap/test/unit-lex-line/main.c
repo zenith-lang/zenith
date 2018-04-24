@@ -5,7 +5,7 @@
 #include <tap.h>
 
 int main(int argc, const char **argv) {
-    tap_init(46);
+    tap_init(47);
     lex_context_t context;
     lex_token_t token;
     const char *line;
@@ -68,6 +68,8 @@ int main(int argc, const char **argv) {
     LINE("    --");
     TOKEN("-");
     TOKEN("-");
+    LINE("    ret");
+    TOKEN("ret");
     LINE("");
     LINE("$exit");
     TOKEN("$");

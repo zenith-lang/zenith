@@ -6,7 +6,7 @@
 #include <tap.h>
 
 int main(int argc, const char **argv) {
-    tap_init(30);
+    tap_init(31);
     lex_context_t context;
     if (lex_open(SRC_DIR "/test/hello-world/hello-world.zen", &context) < 0) {
         tap_fail(errno, "Failed to open file: %s", strerror(errno));
@@ -35,6 +35,7 @@ int main(int argc, const char **argv) {
     TEST("    + 4");
     TEST("    syscall");
     TEST("    --");
+    TEST("    ret");
     TEST("");
     TEST("$exit");
     TEST("    + 1");

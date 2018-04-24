@@ -26,16 +26,16 @@ int main(int argc, const char **argv) {
     } else { \
         tap_not_ok("Expected '%s', but got '%s'.", expected, buffer); \
     }
-    TEST(3, 35, " << \"Hello, world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    ");
-    TEST(5, 36, " \"Hello, world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    + ");
-    TEST(14, 26, "exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n\n");
+    TEST(3, 35, " << \"Hello, world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n    ret\n\n$exit\n    + 1\n    syscall\n\n$main\n    + ");
+    TEST(5, 36, " \"Hello, world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n    ret\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    ");
+    TEST(14, 26, "exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n    ");
     TEST(16, 20, "\n\n$write\n    + ");
-    TEST(8, 39, " world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    + msg_end\n    sub\n    + ");
-    TEST(33, 34, " ");
+    TEST(8, 39, " world!\n\"\n$msg_end\n\n@exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n    ret\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    + msg_end\n    sub\n    ");
+    TEST(33, 34, "\n    ");
     TEST(18, 19, "\n    ");
-    TEST(14, 38, "exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    + msg_end\n    sub\n    ");
+    TEST(14, 38, "exec@\n\n$write\n    + 1\n    + 4\n    syscall\n    --\n    ret\n\n$exit\n    + 1\n    syscall\n\n$main\n    + msg\n    + msg_end\n    ");
     TEST(2, 13, "msg << \"Hello, world!\n\"\n$");
-    TEST(28, 32, " 1\n    syscall\n\n$");
+    TEST(28, 32, "\n    + 1\n    syscall\n\n");
     if (lex_close(&context) < 0) {
         tap_fail(errno, "Failed to close file: %s", strerror(errno));
     }

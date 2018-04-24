@@ -13,6 +13,7 @@ $write
     + 4
     syscall
     --
+    ret
 
 $exit
     + 1
